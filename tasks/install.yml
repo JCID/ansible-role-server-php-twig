@@ -1,0 +1,25 @@
+---
+- name:       Downloaden twig
+  git:        repo=https://github.com/fabpot/Twig.git
+              version=v1.16.2
+              dest=/home/jcid/twig/
+
+- name:       Installeren twig phpize
+  shell:      phpize chdir=/home/jcid/twig/ext/twig/
+
+- name:       Installeren twig configure
+  shell:      ./configure chdir=/home/jcid/twig/ext/twig/
+
+- name:       Installeren twig make
+  shell:      make chdir=/home/jcid/twig/ext/twig/
+
+- name:       Installeren twig make install
+  shell:      make install chdir=/home/jcid/twig/ext/twig/
+
+- name:       Installeren config
+  copy:       src=twig.ini
+              dest=/etc/php.d/twig.ini
+
+- name:       Opruimen twig
+  file:       path=/home/jcid/twig/
+              state=absent

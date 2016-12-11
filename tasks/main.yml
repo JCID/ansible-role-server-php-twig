@@ -1,0 +1,7 @@
+---
+- name:       Controleren of twig is al geinsalleerd
+  stat:       path=/etc/php.d/twig.ini
+  register:   check_twig
+
+- include:    install.yml
+  when:       check_twig.stat.exists == false
